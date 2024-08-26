@@ -1,3 +1,9 @@
 [submodule "portfolio"]
 	path = portfolio
 	url = https://github.com/Sashank999/portfolio
+[submodule "static-qr-gen"]
+	path = static-qr-gen
+	url = https://github.com/Sashank999/static-qr-gen
+[submodule "static-qr-gen-react"]
+	path = static-qr-gen-react
+	url = https://github.com/Sashank999/static-qr-gen-react
