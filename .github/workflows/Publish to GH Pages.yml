@@ -29,12 +29,51 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: "true"
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.0.0
+        with:
+          version: latest
+
       - name: Setup pages
         uses: actions/configure-pages@v3
+
+      - name: Create a website root folder
+        run: |
+          mkdir website-root
+
+      - name: Build static-qr-gen
+        run: |
+          cd static-qr-gen
+          npm install
+          ng build
+          cd dist
+          cd static-qr-gen
+          mv browser static-qr-gen
+          mv static-qr-gen ../../../website-root
+          cd ..
+          cd ..
+          cd ..
+
+      - name: Build static-qr-gen-react
+        run: |
+          cd static-qr-gen-react
+          pnpm install
+          pnpm run build
+          mv out static-qr-gen-react
+          mv static-qr-gen-react ../website-root
+          cd ..
+
+      - name: Move portfolio repo
+        run: |
+          mv portfolio/* website-root
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "portfolio"
+          path: "website-root"
+
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v1
