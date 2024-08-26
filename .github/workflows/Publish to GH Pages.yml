@@ -47,7 +47,7 @@ jobs:
         run: |
           cd static-qr-gen
           npm install
-          ng build
+          npx -p @angular/cli ng build
           cd dist
           cd static-qr-gen
           mv browser static-qr-gen
