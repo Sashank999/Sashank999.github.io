@@ -47,7 +47,7 @@ jobs:
         run: |
           cd static-qr-gen
           npm install
-          npx -p @angular/cli ng build
+          npx -p @angular/cli ng build --base-href /static-qr-gen/
           cd dist
           cd static-qr-gen
           mv browser static-qr-gen
@@ -60,6 +60,14 @@ jobs:
         run: |
           cd static-qr-gen-react
           pnpm install
+
+          echo '/** @type {import('next').NextConfig} */' > module/next.config.mjs
+          echo 'const nextConfig = {'                     >> module/next.config.mjs
+          echo '  output: "export",'                      >> module/next.config.mjs
+          echo '  basePath: "/static-qr-gen-react"'       >> module/next.config.mjs
+          echo '};'                                       >> module/next.config.mjs
+          echo 'export default nextConfig;'               >> module/next.config.mjs
+
           pnpm run build
           mv out static-qr-gen-react
           mv static-qr-gen-react ../website-root
