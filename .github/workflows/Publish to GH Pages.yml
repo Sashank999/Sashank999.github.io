@@ -61,12 +61,12 @@ jobs:
           cd static-qr-gen-react
           pnpm install
 
-          echo '/** @type {import('next').NextConfig} */' > module/next.config.mjs
-          echo 'const nextConfig = {'                     >> module/next.config.mjs
-          echo '  output: "export",'                      >> module/next.config.mjs
-          echo '  basePath: "/static-qr-gen-react"'       >> module/next.config.mjs
-          echo '};'                                       >> module/next.config.mjs
-          echo 'export default nextConfig;'               >> module/next.config.mjs
+          echo '/** @type {import('next').NextConfig} */' > next.config.mjs
+          echo 'const nextConfig = {'                     >> next.config.mjs
+          echo '  output: "export",'                      >> next.config.mjs
+          echo '  basePath: "/static-qr-gen-react"'       >> next.config.mjs
+          echo '};'                                       >> next.config.mjs
+          echo 'export default nextConfig;'               >> next.config.mjs
 
           pnpm run build
           mv out static-qr-gen-react
