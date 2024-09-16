@@ -7,3 +7,6 @@
 [submodule "static-qr-gen-react"]
 	path = static-qr-gen-react
 	url = https://github.com/Sashank999/static-qr-gen-react
+[submodule "spacex-clone"]
+	path = spacex-clone
+	url = https://github.com/Sashank999/spacex-clone
