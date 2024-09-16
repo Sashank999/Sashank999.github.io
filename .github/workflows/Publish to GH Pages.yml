@@ -73,7 +73,11 @@ jobs:
           mv static-qr-gen-react ../website-root
           cd ..
 
-      - name: Move portfolio repo
+      - name: Move the spacex-clone repo
+        run: |
+          mv spacex-clone website-root
+
+      - name: Move portfolio repo (as the actual website, hiding the repos)
         run: |
           mv portfolio/* website-root
 
