@@ -18,7 +18,7 @@ for await (const line of inputStream) {
   for (const char of line) {
     if (char == "\n") {
       const quoteLength = currentQuote.length;
-      quoteIndex += quoteLength;
+      quoteIndex += quoteLength + 1; // "+ 1" for newline.
 
       let quoteIndexParts = [],
         quoteIndexCopy = quoteIndex;
