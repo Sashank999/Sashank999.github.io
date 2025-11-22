@@ -2,7 +2,7 @@ name: Publish to GH Pages
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 
   workflow_dispatch:
 
@@ -76,6 +76,14 @@ jobs:
       - name: Move the spacex-clone repo
         run: |
           mv spacex-clone website-root
+
+      - name: Create quotes database for portfolio website
+        run: |
+          wget -q 'https://raw.githubusercontent.com/dwyl/quotes/45bdefe4e8b291a26c7b4c4a8dd1e24139ab7a17/quotes.json'
+          jq '.[] | [.author, .text] | join(";")' -c -r < quotes.json > quotes.txt
+          shuf -o website-root/randomised_quotes.txt quotes.txt
+          node portfolio_quotes_processor.js website-root/randomised_quotes.txt website-root/quotes_indices.txt
+          rm quotes.json quotes.txt
 
       - name: Move portfolio repo (as the actual website, hiding the repos)
         run: |
