@@ -20,10 +20,11 @@ for await (const line of inputStream) {
       const quoteLength = currentQuote.length;
       quoteIndex += quoteLength;
 
-      let quoteIndexParts = [];
-      while (quoteIndex > 0) {
-        quoteIndexParts.unshift(quoteIndex % ONE_BYTE);
-        quoteIndex = Math.floor(quoteIndex / ONE_BYTE);
+      let quoteIndexParts = [],
+        quoteIndexCopy = quoteIndex;
+      while (quoteIndexCopy > 0) {
+        quoteIndexParts.unshift(quoteIndexCopy % ONE_BYTE);
+        quoteIndexCopy = Math.floor(quoteIndexCopy / ONE_BYTE);
       }
 
       while (quoteIndexParts.length < 3) {
