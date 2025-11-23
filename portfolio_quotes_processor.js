@@ -17,7 +17,7 @@ let currentQuote = "",
 for await (const line of inputStream) {
   for (const char of line) {
     if (char == "\n") {
-      const quoteLength = currentQuote.length;
+      const quoteLength = new Blob([...currentQuote]).size;
       quoteIndex += quoteLength + 1; // "+ 1" for newline.
 
       let quoteIndexParts = [],
